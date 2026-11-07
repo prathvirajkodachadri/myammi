@@ -2,52 +2,38 @@
 
 A romantic interactive anniversary scavenger hunt web application created with love by **Prathviraj** for **Ammi**.
 
-Designed and optimized to run smoothly on Android mobile phones (including the **OnePlus Nord CE 3**), this experience blends heartfelt storytelling, interactive clues, audio chimes, animated SVG artwork, and a suspenseful gift reveal.
+Designed and optimized to run smoothly on Android mobile phones (including the **OnePlus Nord CE 3**), this experience guides Ammi through 6 real-life gifts with interactive clues, audio chimes, animated SVG artwork, and a suspenseful final reveal.
 
 ---
 
-## ✨ Features & Highlights
+## ✨ Features & Storyline
 
 1. **Crafted for Mobile (OnePlus Nord CE 3 & Android)**:
    - Screen-fit responsive layout (`max-width: 440px`) designed for 20:9 tall aspect ratio viewports (~392×872px).
    - High-contrast velvet wine (`#1a080d`) and champagne gold typography.
-   - Touch-optimized buttons, full Kannada Unicode font fallback, and seamless soft-keyboard interaction.
+   - Touch-optimized buttons, full Kannada Unicode font fallback, and clean mobile keyboard interaction.
 
-2. **Full Treasure Hunt Storyline**:
+2. **The 6 Gifts Treasure Hunt**:
    - **Welcome Screen**: Anniversary celebration date (*November 18*), screen recording reminder, beating heart artwork, and journey start button.
-   - **Stage 1 (Call Arpitha)**: Ringing phone illustration & clue to call Arpitha for password `LOVE01`.
-   - **Stage 2 (Chocolate / Mirror)**: Studio room vanity mirror illustration & clue for password `LOVE02`.
-   - **Stage 3 (Hair Clips)**: Blooming floral hair accessory illustration & clue for password `LOVE03`.
-   - **Stage 4 (Scrunchies / Diwan Cot)**: Silk scrunchie illustration & clue for password `LOVE04`.
-   - **Stage 5 (Sandals / Shoe Rack)**: Shoe rack clue & password `LOVE05`.
-   - **Stage 6 (Dresses / Pooja Room)**: Pooja room saree/dress clue & final hunt password `LOVE06`.
+   - **Stage 1 (Call Arpitha)**: Ringing phone illustration & clue to call Arpitha for password `LOVE01` to unlock the journey.
+   - **Stage 2 (Gift 01 • Studio Room)**: Studio room vanity mirror illustration & clue for password `LOVE02`.
+   - **Stage 3 (Gift 02 • Hair Clips)**: Blooming floral hair accessory illustration & clue for password `LOVE03`.
+   - **Stage 4 (Gift 03 • Diwan Cot)**: Silk scrunchie illustration & clue for password `LOVE04`.
+   - **Stage 5 (Gift 04 • Shoe Rack)**: Shoe rack clue & password `LOVE05`.
+   - **Stage 6 (Gift 05 • Pooja Room)**: Pooja room clue & password `LOVE06`.
+   - **Final Screen (Gift 06 • The Grand Mystery)**: Directs Ammi to the **Musical Keyboard Backside Room** where a special mystery box awaits. When she physically opens the box in that room, she discovers the grand anniversary surprise!
 
 3. **Stage-by-Stage Animated Gift Box Unboxing**:
    - Every unlocked stage pops open a 3D animated gift box with flying confetti hearts, congratulatory message, and sound chime.
 
-4. **The Riddle Questions & Token Collector**:
-   - Asks 4 personal questions one by one:
-     1. ಗಂಡನ ಹುಟ್ಟಿದ ದಿನಾಂಕ: `18`
-     2. "ನಾನು" in English single letter: `I`
-     3. Prathviraj initial letter: `P`
-     4. Number 1 in English: `ONE`
-   - Answers are stamped into golden wax-seal tokens (`[18]`, `[I]`, `[P]`, `[ONE]`).
-
-5. **The Grand Final Reveal**:
-   - The collected tokens fuse together: `[18]` `[I]` `[P]` `[ONE]` (`iPhone 18`).
-   - Tapping the royal mystery gift box opens the lid with rotating golden sunburst rays, glowing aura, multi-colored particle explosion, and reveals:
-     - **iPhone 18 Pro ❤️**
-     - **Pooja Room ನಲ್ಲಿ ನಿಮಗಾಗಿ ವಿಶೇಷ ಅಚ್ಚರಿ ಕಾಯುತ್ತಿದೆ ❤️**
-     - Romantic note from **Prathviraj**.
-
-6. **100% Offline & Zero External Dependencies**:
+4. **100% Offline & Zero External Dependencies**:
    - Pure inline HTML, CSS, bespoke inline SVG illustrations, and Web Audio API synthesizer for romantic background music box and chimes. No external mp3 files or CDN font files that could fail on slow mobile networks.
 
 ---
 
 ## 🛠️ Customization
 
-All passwords, answers, riddles, and reveal messages can be customized easily in `index.html` inside the `CONFIG` object:
+All passwords, locations, and celebration messages can be customized easily in `index.html` inside the `CONFIG` object:
 
 ```javascript
 const CONFIG = {
@@ -56,21 +42,10 @@ const CONFIG = {
     1: "LOVE01", // Spoken by Arpitha
     2: "LOVE02", // Studio room mirror
     3: "LOVE03", // Hair clips
-    4: "LOVE04", // Diwan cot scrunchies
-    5: "LOVE05", // Shoe rack sandals
-    6: "LOVE06"  // Pooja room dress
-  },
-
-  // The 4 riddle questions
-  questions: [
-    { q: "ನಿಮ್ಮ ಗಂಡನ ಹುಟ್ಟಿದ ದಿನಾಂಕ ಯಾವುದು?", a: "18" },
-    { q: "ನಾನು ಎಂಬುದನ್ನು English‌ನಲ್ಲಿ ಒಂದೇ ಅಕ್ಷರದಲ್ಲಿ ಹೇಗೆ ಬರೆಯುತ್ತೀರಿ?", a: "I" },
-    { q: "ನಿಮ್ಮ ಗಂಡನ ಹೆಸರು Prathviraj. ಅವರ ಹೆಸರಿನ ಮೊದಲ ಅಕ್ಷರ ಯಾವುದು?", a: "P" },
-    { q: "1 ಅನ್ನು English ಅಕ್ಷರಗಳಲ್ಲಿ ಬರೆಯಿರಿ.", a: "ONE" }
-  ],
-
-  // Final Reveal Gift
-  finalGift: "iPhone 18 Pro"
+    4: "LOVE04", // Diwan cot
+    5: "LOVE05", // Shoe rack
+    6: "LOVE06"  // Pooja room
+  }
 };
 ```
 
