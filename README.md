@@ -1,1 +1,101 @@
-# myammi
+# For Ammi ❤️ | Anniversary Treasure Hunt
+
+A romantic interactive anniversary scavenger hunt web application created with love by **Prathviraj** for **Ammi**.
+
+Designed and optimized to run smoothly on Android mobile phones (including the **OnePlus Nord CE 3**), this experience blends heartfelt storytelling, interactive clues, audio chimes, animated SVG artwork, and a suspenseful gift reveal.
+
+---
+
+## ✨ Features & Highlights
+
+1. **Crafted for Mobile (OnePlus Nord CE 3 & Android)**:
+   - Screen-fit responsive layout (`max-width: 440px`) designed for 20:9 tall aspect ratio viewports (~392×872px).
+   - High-contrast velvet wine (`#1a080d`) and champagne gold typography.
+   - Touch-optimized buttons, full Kannada Unicode font fallback, and seamless soft-keyboard interaction.
+
+2. **Full Treasure Hunt Storyline**:
+   - **Welcome Screen**: Anniversary celebration date (*November 18*), screen recording reminder, beating heart artwork, and journey start button.
+   - **Stage 1 (Call Arpitha)**: Ringing phone illustration & clue to call Arpitha for password `LOVE01`.
+   - **Stage 2 (Chocolate / Mirror)**: Studio room vanity mirror illustration & clue for password `LOVE02`.
+   - **Stage 3 (Hair Clips)**: Blooming floral hair accessory illustration & clue for password `LOVE03`.
+   - **Stage 4 (Scrunchies / Diwan Cot)**: Silk scrunchie illustration & clue for password `LOVE04`.
+   - **Stage 5 (Sandals / Shoe Rack)**: Shoe rack clue & password `LOVE05`.
+   - **Stage 6 (Dresses / Pooja Room)**: Pooja room saree/dress clue & final hunt password `LOVE06`.
+
+3. **Stage-by-Stage Animated Gift Box Unboxing**:
+   - Every unlocked stage pops open a 3D animated gift box with flying confetti hearts, congratulatory message, and sound chime.
+
+4. **The Riddle Questions & Token Collector**:
+   - Asks 4 personal questions one by one:
+     1. ಗಂಡನ ಹುಟ್ಟಿದ ದಿನಾಂಕ: `18`
+     2. "ನಾನು" in English single letter: `I`
+     3. Prathviraj initial letter: `P`
+     4. Number 1 in English: `ONE`
+   - Answers are stamped into golden wax-seal tokens (`[18]`, `[I]`, `[P]`, `[ONE]`).
+
+5. **The Grand Final Reveal**:
+   - The collected tokens fuse together: `[18]` `[I]` `[P]` `[ONE]` (`iPhone 18`).
+   - Tapping the royal mystery gift box opens the lid with rotating golden sunburst rays, glowing aura, multi-colored particle explosion, and reveals:
+     - **iPhone 18 Pro ❤️**
+     - **Pooja Room ನಲ್ಲಿ ನಿಮಗಾಗಿ ವಿಶೇಷ ಅಚ್ಚರಿ ಕಾಯುತ್ತಿದೆ ❤️**
+     - Romantic note from **Prathviraj**.
+
+6. **100% Offline & Zero External Dependencies**:
+   - Pure inline HTML, CSS, bespoke inline SVG illustrations, and Web Audio API synthesizer for romantic background music box and chimes. No external mp3 files or CDN font files that could fail on slow mobile networks.
+
+---
+
+## 🛠️ Customization
+
+All passwords, answers, riddles, and reveal messages can be customized easily in `index.html` inside the `CONFIG` object:
+
+```javascript
+const CONFIG = {
+  // Passwords for Stages 1 to 6 (case-insensitive)
+  passwords: {
+    1: "LOVE01", // Spoken by Arpitha
+    2: "LOVE02", // Studio room mirror
+    3: "LOVE03", // Hair clips
+    4: "LOVE04", // Diwan cot scrunchies
+    5: "LOVE05", // Shoe rack sandals
+    6: "LOVE06"  // Pooja room dress
+  },
+
+  // The 4 riddle questions
+  questions: [
+    { q: "ನಿಮ್ಮ ಗಂಡನ ಹುಟ್ಟಿದ ದಿನಾಂಕ ಯಾವುದು?", a: "18" },
+    { q: "ನಾನು ಎಂಬುದನ್ನು English‌ನಲ್ಲಿ ಒಂದೇ ಅಕ್ಷರದಲ್ಲಿ ಹೇಗೆ ಬರೆಯುತ್ತೀರಿ?", a: "I" },
+    { q: "ನಿಮ್ಮ ಗಂಡನ ಹೆಸರು Prathviraj. ಅವರ ಹೆಸರಿನ ಮೊದಲ ಅಕ್ಷರ ಯಾವುದು?", a: "P" },
+    { q: "1 ಅನ್ನು English ಅಕ್ಷರಗಳಲ್ಲಿ ಬರೆಯಿರಿ.", a: "ONE" }
+  ],
+
+  // Final Reveal Gift
+  finalGift: "iPhone 18 Pro"
+};
+```
+
+---
+
+## 🚀 Running Locally & Testing
+
+You can run any local static file server:
+
+```bash
+# Using Python
+python3 -m http.server 8000
+
+# Using Node.js npx
+npx serve .
+```
+
+Open `http://localhost:8000` in your mobile or desktop browser.
+
+---
+
+## 🌐 Deploying to GitHub Pages
+
+1. Push this repository to GitHub: `https://github.com/prathvirajkodachadri/myammi`
+2. Go to **Settings** > **Pages**.
+3. Under **Build and deployment** > **Source**, select **Deploy from a branch**.
+4. Choose the `main` branch (or your preferred branch) and `/ (root)` folder, then click **Save**.
+5. Your website will be live at `https://prathvirajkodachadri.github.io/myammi/` ❤️
