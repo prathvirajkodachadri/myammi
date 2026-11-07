@@ -638,7 +638,7 @@ input:disabled { opacity: 0.65; }
 }
 
 /* ============================================================
-   FINAL SCREEN & GRAND REVEAL (Musical Keyboard Backside Room)
+   FINAL SCREEN & GRAND REVEAL (Musical Keyboard Backside)
    ============================================================ */
 .rays {
   position: absolute; inset: -40px; pointer-events: none; opacity: 0;
@@ -1092,7 +1092,7 @@ footer b { color: var(--gold); }
     </div>
   </section>
 
-  <!-- ==================== SCREEN FINAL : GIFT 06 (MUSICAL KEYBOARD BACKSIDE ROOM) ==================== -->
+  <!-- ==================== SCREEN FINAL : GIFT 06 (MUSICAL KEYBOARD BACKSIDE) ==================== -->
   <section class="screen" id="screen-final">
     <div class="card" id="finalCard">
       <div class="rays" id="rays"></div>
@@ -1147,12 +1147,12 @@ footer b { color: var(--gold); }
       <!-- Cascading Reveal Block Directing to Musical Keyboard Backside Room -->
       <div class="reveal-block hidden" id="revealBlock" style="position: relative; z-index: 2;">
         <h1 class="reveal-title rl">
-          <span class="grad">Musical Keyboard Backside Room</span>
+          <span class="grad">Musical Keyboard Backside</span>
           <span style="display: inline-block; animation: heartPulse 1.8s infinite;">❤️</span>
         </h1>
         <div class="divider rl"><svg viewBox="0 0 24 24"><path d="M12 21C6.5 16.5 2 12.7 2 8.9 2 6.1 4.2 4 6.8 4c2 0 3.8 1.1 5.2 3.1C13.4 5.1 15.2 4 17.2 4 19.8 4 22 6.1 22 8.9c0 3.8-4.5 7.6-10 12.1z"/></svg></div>
         
-        <p class="reveal-subtitle rl"><b>Musical Keyboard ಹಿಂಭಾಗದ ರೂಮ್‌ಗೆ ಹೋಗಿ ನೋಡಿ</b> ❤️</p>
+        <p class="reveal-subtitle rl"><b>Musical Keyboard ಹಿಂಭಾಗ ನೋಡಿ</b> ❤️</p>
         <p class="lead rl" style="font-size: 15px; line-height: 1.7;">
           ನಿಮಗಾಗಿ ಒಂದು ಅದ್ಭುತ ಅಚ್ಚರಿ ಕಾದಿದೆ! ❤️
         </p>
@@ -1518,7 +1518,7 @@ const NEXT_STAGE_MAP = {
   3: { nextId: "screen-s4", nextStep: 4 },
   4: { nextId: "screen-s5", nextStep: 5 },
   5: { nextId: "screen-s6", nextStep: 6 },
-  6: { nextId: "screen-final", nextStep: 7 } // Directly to Final Gift (Musical Keyboard Backside Room)
+  6: { nextId: "screen-final", nextStep: 7 } // Directly to Final Gift (Musical Keyboard Backside)
 };
 
 $$("form[data-stage-form]").forEach(form => {
@@ -1563,7 +1563,7 @@ function shakeElement(el) {
 }
 
 /* ============================================================
-   FINAL SCREEN : GIFT 06 (MUSICAL KEYBOARD BACKSIDE ROOM)
+   FINAL SCREEN : GIFT 06 (MUSICAL KEYBOARD BACKSIDE)
    ============================================================ */
 let finalRevealed = false;
 const finalCard = $("#finalCard");
