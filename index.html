@@ -188,7 +188,7 @@ body::after {
 }
 
 /* ============================================================
-   PROGRESS SECTION
+   PROGRESS SECTION (6 Clues / 6 Gifts)
    ============================================================ */
 .progress-wrap {
   position: relative; z-index: 10;
@@ -213,10 +213,10 @@ body::after {
   box-shadow: 0 0 10px rgba(232, 198, 135, 0.6);
 }
 .hearts-row {
-  display: flex; gap: 5px; justify-content: center; margin-top: 6px;
+  display: flex; gap: 7px; justify-content: center; margin-top: 6px;
 }
 .hearts-row span {
-  font-size: 11px; opacity: 0.22; transition: all 0.4s ease;
+  font-size: 13px; opacity: 0.22; transition: all 0.4s ease;
   filter: grayscale(1);
 }
 .hearts-row span.on {
@@ -503,43 +503,6 @@ input:disabled { opacity: 0.65; }
 }
 
 /* ============================================================
-   TOKENS & WAX SEALS
-   ============================================================ */
-.token-row {
-  display: flex; gap: 8px; justify-content: center;
-  flex-wrap: wrap; margin: 4px 0;
-}
-.token {
-  display: inline-flex; align-items: center; justify-content: center;
-  min-width: 52px; height: 52px; padding: 0 14px;
-  border-radius: 999px;
-  background: radial-gradient(circle at 35% 28%, #ffeec0, #caa050 70%);
-  color: #3d0d1d;
-  font-family: Georgia, serif; font-weight: 900; font-size: 1.25rem;
-  border: 1.5px solid rgba(255, 240, 210, 0.8);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4), 0 0 16px rgba(232, 198, 135, 0.5);
-  animation: popIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) both;
-}
-.token.sm {
-  min-width: 38px; height: 38px; font-size: 0.95rem; padding: 0 10px;
-}
-@keyframes popIn {
-  from { transform: scale(0.3) rotate(-10deg); opacity: 0; }
-  to { transform: scale(1) rotate(0deg); opacity: 1; }
-}
-
-/* Token fuse animation in final reveal */
-.token-row.fuse .token {
-  animation: none;
-  transition: transform 0.9s ease, opacity 0.9s ease, filter 0.9s ease;
-  transform: scale(1.35); opacity: 0;
-  filter: drop-shadow(0 0 18px rgba(246, 215, 155, 0.95));
-}
-.token-row.fuse .token:nth-child(2) { transition-delay: 0.14s; }
-.token-row.fuse .token:nth-child(3) { transition-delay: 0.28s; }
-.token-row.fuse .token:nth-child(4) { transition-delay: 0.42s; }
-
-/* ============================================================
    GIFT OPENING OVERLAY (Stage-by-stage unboxing)
    ============================================================ */
 #giftOverlay {
@@ -644,7 +607,7 @@ input:disabled { opacity: 0.65; }
 }
 
 /* ============================================================
-   FINAL SCREEN & GRAND REVEAL
+   FINAL SCREEN & GRAND REVEAL (Musical Keyboard Backside Room)
    ============================================================ */
 .rays {
   position: absolute; inset: -40px; pointer-events: none; opacity: 0;
@@ -658,7 +621,7 @@ input:disabled { opacity: 0.65; }
 
 .big-gift-wrap {
   position: relative; z-index: 2; width: min(180px, 52vw);
-  margin: 4px auto 2px; cursor: pointer; outline: none;
+  margin: 6px auto 4px; cursor: pointer; outline: none;
 }
 .big-gift-wrap svg {
   width: 100%; height: auto; display: block;
@@ -719,7 +682,7 @@ input:disabled { opacity: 0.65; }
 
 .reveal-title {
   font-family: Georgia, "Noto Serif Kannada", serif;
-  font-size: clamp(23px, 6.5vw, 29px);
+  font-size: clamp(21px, 6.2vw, 27px);
   font-weight: 700; line-height: 1.25;
 }
 .reveal-title .grad {
@@ -730,7 +693,7 @@ input:disabled { opacity: 0.65; }
 }
 .reveal-subtitle {
   font-family: Georgia, "Noto Serif Kannada", serif;
-  font-size: 17px; color: var(--gold2); line-height: 1.4;
+  font-size: 16.5px; color: var(--gold2); line-height: 1.4;
   text-shadow: 0 2px 14px rgba(232, 198, 135, 0.3);
 }
 
@@ -793,7 +756,7 @@ footer b { color: var(--gold); }
   </button>
 </header>
 
-<!-- Progress Bar -->
+<!-- Progress Bar (6 Gifts Tracker) -->
 <div class="progress-wrap">
   <div class="progress-top">
     <span id="progressLabel">ಪ್ರೀತಿಯ ಪ್ರಯಾಣ</span>
@@ -861,7 +824,6 @@ footer b { color: var(--gold); }
         <span>ಪ್ರಯಾಣ ಶುರು ಮಾಡೋಣ ❤️</span>
         <span class="click-sub">CLICK HERE</span>
       </button>
-      <p class="small" style="font-size: 11px; opacity: 0.85">Registered recording ನೀವೇ ನಿಮ್ಮ phone‌ನಲ್ಲಿ ಆನ್ ಮಾಡಿಕೊಳ್ಳಿ ❤️</p>
     </div>
   </section>
 
@@ -899,11 +861,10 @@ footer b { color: var(--gold); }
         </button>
         <p class="msg" role="alert"></p>
       </form>
-      <p class="small">ದೊಡ್ಡ ಅಥವಾ ಸಣ್ಣ ಅಕ್ಷರಗಳಲ್ಲಿ ಬರೆದರೂ ಪರವಾಗಿಲ್ಲ ❤️</p>
     </div>
   </section>
 
-  <!-- ==================== STAGE 2 : CHOCOLATE / MIRROR ==================== -->
+  <!-- ==================== STAGE 2 : GIFT 01 / MIRROR ==================== -->
   <section class="screen" id="screen-s2" data-stage="2">
     <div class="card">
       <span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
@@ -929,7 +890,6 @@ footer b { color: var(--gold); }
       <p class="location-pill">🪞 Studio Room — ಕನ್ನಡಿಯ ಹಿಂದೆ ನೋಡಿ</p>
       <h2>My ಪುಟ್ಟು ಅಮ್ಮಿ</h2>
       <p class="lead">ನಿಮ್ಮ ಮೊದಲ ಸುಳಿವು ಇಲ್ಲಿದೆ ❤️<br><b>ಸ್ಟುಡಿಯೋ ರೂಮ್‌ಗೆ ಹೋಗಿ, ಕನ್ನಡಿಯ ಹಿಂದೆ ನೋಡಿ.</b></p>
-      <p class="small">ಅಲ್ಲಿ ನಿಮಗಾಗಿ ಒಂದು ಪುಟ್ಟ ಉಡುಗೊರೆ ಮತ್ತು ಕಾರ್ಡ್ ಕಾಯುತ್ತಿದೆ. ಕಾರ್ಡ್‌ನಲ್ಲಿರುವ password ಇಲ್ಲಿ ನಮೂದಿಸಿ.</p>
 
       <form data-stage-form="2" novalidate autocomplete="off">
         <label for="pw2">ಕಾರ್ಡ್‌ನ Password ನಮೂದಿಸಿ</label>
@@ -942,7 +902,7 @@ footer b { color: var(--gold); }
     </div>
   </section>
 
-  <!-- ==================== STAGE 3 : HAIR CLIPS ==================== -->
+  <!-- ==================== STAGE 3 : GIFT 02 / HAIR CLIPS ==================== -->
   <section class="screen" id="screen-s3" data-stage="3">
     <div class="card">
       <span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
@@ -976,7 +936,6 @@ footer b { color: var(--gold); }
       <p class="location-pill">🌸 ಸುತ್ತಮುತ್ತ ಚೆನ್ನಾಗಿ ಗಮನಿಸಿ</p>
       <h2>ಒಂದು ಪುಟ್ಟ ಅಚ್ಚರಿ ನಿಮಗಾಗಿ ಕಾಯುತ್ತಿದೆ</h2>
       <p class="lead">ಇನ್ನೊಂದು ಪುಟ್ಟ ಅಚ್ಚರಿ ನಿಮಗಾಗಿ ಕಾಯುತ್ತಿದೆ. <b>ಸುತ್ತಮುತ್ತ ಚೆನ್ನಾಗಿ ಗಮನಿಸಿ.</b></p>
-      <p class="small">ಅದರ ಜೊತೆ ಇರುವ ಕಾರ್ಡ್‌ನಲ್ಲಿರುವ password ಇಲ್ಲಿ ನಮೂದಿಸಿ.</p>
 
       <form data-stage-form="3" novalidate autocomplete="off">
         <label for="pw3">ಕಾರ್ಡ್‌ನ Password ನಮೂದಿಸಿ</label>
@@ -989,7 +948,7 @@ footer b { color: var(--gold); }
     </div>
   </section>
 
-  <!-- ==================== STAGE 4 : SCRUNCHIES / DIWAN COT ==================== -->
+  <!-- ==================== STAGE 4 : GIFT 03 / SCRUNCHIES ==================== -->
   <section class="screen" id="screen-s4" data-stage="4">
     <div class="card">
       <span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
@@ -1018,7 +977,6 @@ footer b { color: var(--gold); }
       <p class="location-pill">🛏️ Diwan Cot ಬಳಿ ನೋಡಿ</p>
       <h2>Adventure ಮುಂದುವರಿಯುತ್ತದೆ…</h2>
       <p class="lead">ನಿಮ್ಮ ಮುಂದಿನ ಅಚ್ಚರಿಯನ್ನು ಹುಡುಕಿ. ಇದು ನಿಮ್ಮ ದಿನವನ್ನು ಇನ್ನಷ್ಟು ಮುದ್ದಾಗಿಸಲಿ!</p>
-      <p class="small">Diwan Cot ಬಳಿ ನೋಡಿ. ಅದರ ಜೊತೆ ಇರುವ ಕಾರ್ಡ್‌ನ password ಇಲ್ಲಿ ನಮೂದಿಸಿ.</p>
 
       <form data-stage-form="4" novalidate autocomplete="off">
         <label for="pw4">ಕಾರ್ಡ್‌ನ Password ನಮೂದಿಸಿ</label>
@@ -1031,7 +989,7 @@ footer b { color: var(--gold); }
     </div>
   </section>
 
-  <!-- ==================== STAGE 5 : SANDALS / SHOE RACK ==================== -->
+  <!-- ==================== STAGE 5 : GIFT 04 / SANDALS ==================== -->
   <section class="screen" id="screen-s5" data-stage="5">
     <div class="card">
       <span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
@@ -1056,7 +1014,6 @@ footer b { color: var(--gold); }
       <p class="location-pill">👟 Shoe Rack ಬಳಿ ನೋಡಿ</p>
       <h2>ಇನ್ನೂ ಮುಗಿದಿಲ್ಲ! ❤️</h2>
       <p class="lead">ಇನ್ನೊಂದು ಸುಳಿವು, ಇನ್ನೊಂದು ಪುಟ್ಟ ಸಂತೋಷ. ನಿಮ್ಮ ಮುಂದಿನ ಉಡುಗೊರೆಯನ್ನು ಹುಡುಕಿ.</p>
-      <p class="small">Shoe Rack ಬಳಿ ನೋಡಿ. ಕಾರ್ಡ್‌ನಲ್ಲಿರುವ password ಇಲ್ಲಿ ನಮೂದಿಸಿ.</p>
 
       <form data-stage-form="5" novalidate autocomplete="off">
         <label for="pw5">ಕಾರ್ಡ್‌ನ Password ನಮೂದಿಸಿ</label>
@@ -1069,11 +1026,11 @@ footer b { color: var(--gold); }
     </div>
   </section>
 
-  <!-- ==================== STAGE 6 : DRESSES / POOJA ROOM ==================== -->
+  <!-- ==================== STAGE 6 : GIFT 05 / DRESSES ==================== -->
   <section class="screen" id="screen-s6" data-stage="6">
     <div class="card">
       <span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
-      <p class="stage-badge">ಉಡುಗೊರೆ 05 • ಕೊನೆಯ ಸುಳಿವು</p>
+      <p class="stage-badge">ಉಡುಗೊರೆ 05 • Clue 06</p>
 
       <div class="ornament">
         <svg viewBox="0 0 120 120">
@@ -1094,7 +1051,6 @@ footer b { color: var(--gold); }
       <p class="location-pill">🪔 Pooja Room ಬಳಿ ನೋಡಿ</p>
       <h2>ಕೊನೆಯ ಸುಳಿವಿನ ಸಮಯ…</h2>
       <p class="lead">ನಿಮ್ಮ ಮುಂದಿನ ಉಡುಗೊರೆಯನ್ನು ಹುಡುಕಿ. ಅದರ ಜೊತೆ ಇರುವ ಕಾರ್ಡ್‌ನಲ್ಲಿ ಈ adventure‌ನ <b>ಕೊನೆಯ password</b> ಇದೆ.</p>
-      <p class="small">Pooja Room ಬಳಿ ನೋಡಿ. ಕಾರ್ಡ್‌ನ ಕೊನೆಯ password ಇಲ್ಲಿ ನಮೂದಿಸಿ.</p>
 
       <form data-stage-form="6" novalidate autocomplete="off">
         <label for="pw6">ಕೊನೆಯ Password ನಮೂದಿಸಿ</label>
@@ -1107,55 +1063,7 @@ footer b { color: var(--gold); }
     </div>
   </section>
 
-  <!-- ==================== QUESTIONS CONTAINER ==================== -->
-  <section class="screen" id="screen-questions">
-    <div class="card" id="qCard">
-      <span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
-      
-      <div class="ornament">
-        <svg viewBox="0 0 24 24" fill="none">
-          <defs>
-            <linearGradient id="kyG" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0" stop-color="#f7e3b0"/>
-              <stop offset="1" stop-color="#caa050"/>
-            </linearGradient>
-          </defs>
-          <circle cx="7.5" cy="7.5" r="4.3" stroke="url(#kyG)" stroke-width="1.8"/>
-          <path d="M10.6 10.6 20 20M15.2 15.2l2.3-2.3M17.8 17.8l2.2-2.2" stroke="url(#kyG)" stroke-width="1.8" stroke-linecap="round"/>
-        </svg>
-      </div>
-
-      <p class="stage-badge" id="qBadge">ಪ್ರೀತಿಯ ಪ್ರಶ್ನೆ 01 / 04</p>
-      <h2 id="qQuestionText">ಪ್ರಶ್ನೆ ಲೋಡ್ ಆಗುತ್ತಿದೆ…</h2>
-
-      <!-- Active Question Form -->
-      <form id="qForm" novalidate autocomplete="off">
-        <label for="qInput">ನಿಮ್ಮ ಉತ್ತರ ನಮೂದಿಸಿ</label>
-        <input id="qInput" type="text" placeholder="ಇಲ್ಲಿ ನಮೂದಿಸಿ" autocomplete="off" autocapitalize="characters" enterkeyhint="go" spellcheck="false" required>
-        <button class="btn" type="submit">
-          <span>ಉತ್ತರ ಪರಿಶೀಲಿಸಿ ❤️</span>
-        </button>
-        <p class="msg" id="qMsg" role="alert"></p>
-      </form>
-
-      <!-- Earned Token Card when correct -->
-      <div id="qEarnedWrap" style="display: none; width: 100%; flex-direction: column; align-items: center; gap: 8px;">
-        <div class="token" id="qEarnedToken">18</div>
-        <p class="msg ok" style="margin: 0">✦ ಸರಿಯಾದ ಉತ್ತರ! ನಿಮ್ಮ ಪ್ರೀತಿಯ ಟೋಕನ್ ಸಿಕ್ಕಿತು ✦</p>
-        <button class="btn secondary" id="qNextBtn" type="button">
-          <span id="qNextBtnText">ಮುಂದಿನ ಪ್ರಶ್ನೆ ❤️</span>
-        </button>
-      </div>
-
-      <!-- Collected Tokens Ribbon -->
-      <div style="margin-top: 6px; width: 100%;">
-        <p style="font-size: 11px; letter-spacing: 0.15em; color: var(--gold); text-transform: uppercase; margin-bottom: 5px;">ಸಂಗ್ರಹಿಸಿದ ಟೋಕನ್‌ಗಳು:</p>
-        <div class="token-row" id="qCollectedRow"></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ==================== SCREEN FINAL : THE REVEAL ==================== -->
+  <!-- ==================== SCREEN FINAL : GIFT 06 (MUSICAL KEYBOARD BACKSIDE ROOM) ==================== -->
   <section class="screen" id="screen-final">
     <div class="card" id="finalCard">
       <div class="rays" id="rays"></div>
@@ -1165,12 +1073,9 @@ footer b { color: var(--gold); }
       <span class="twinkle-star" style="top: 175px; left: 16px; animation-delay: 0.9s;">✦</span>
       <span class="twinkle-star" style="top: 165px; right: 20px; animation-delay: 0.3s;">✦</span>
 
-      <p class="eyebrow" style="position: relative; z-index: 2;">✦ ಕೊನೆಯ ಅಚ್ಚರಿ • The Final Reveal ✦</p>
-      <h2 style="position: relative; z-index: 2;">ನಿಮ್ಮ ಉತ್ತರಗಳು ಒಂದಾದಾಗ…</h2>
+      <p class="eyebrow" style="position: relative; z-index: 2;">✦ ಕೊನೆಯ ಅಚ್ಚರಿ • The Final Surprise ✦</p>
+      <h2 style="position: relative; z-index: 2;">ನಿಮಗಾಗಿ ಕಾದಿದೆ ಅಂತಿಮ ಅಚ್ಚರಿ… ❤️</h2>
       
-      <!-- Assembled tokens (18 + I + P + ONE = iPhone 18) -->
-      <div class="token-row" id="finalTokensRow" style="position: relative; z-index: 2;"></div>
-
       <!-- Interactive 3D Gift Box -->
       <div class="big-gift-wrap" id="finalGiftWrap" role="button" tabindex="0" aria-label="ಉಡುಗೊರೆಯನ್ನು ತೆರೆಯಲು ತಟ್ಟಿರಿ">
         <svg viewBox="0 0 220 210">
@@ -1211,22 +1116,26 @@ footer b { color: var(--gold); }
 
       <p class="tap-hint" id="tapHint" style="position: relative; z-index: 2;">ಉಡುಗೊರೆಯನ್ನು ತೆರೆಯಲು ಮೆಲ್ಲಗೆ ತಟ್ಟಿರಿ ❤️</p>
 
-      <!-- Cascading Reveal Block -->
+      <!-- Cascading Reveal Block Directing to Musical Keyboard Backside Room -->
       <div class="reveal-block hidden" id="revealBlock" style="position: relative; z-index: 2;">
         <h1 class="reveal-title rl">
-          <span class="grad" id="giftNameReveal">iPhone 18 Pro</span>
+          <span class="grad">Musical Keyboard Backside Room</span>
           <span style="display: inline-block; animation: heartPulse 1.8s infinite;">❤️</span>
         </h1>
         <div class="divider rl"><svg viewBox="0 0 24 24"><path d="M12 21C6.5 16.5 2 12.7 2 8.9 2 6.1 4.2 4 6.8 4c2 0 3.8 1.1 5.2 3.1C13.4 5.1 15.2 4 17.2 4 19.8 4 22 6.1 22 8.9c0 3.8-4.5 7.6-10 12.1z"/></svg></div>
         
-        <p class="reveal-subtitle rl"><b>Pooja Room</b> ನಲ್ಲಿ ನಿಮಗಾಗಿ ವಿಶೇಷ ಅಚ್ಚರಿ ಕಾಯುತ್ತಿದೆ ❤️</p>
-        <p class="lead rl" style="font-size: 13.5px; opacity: 0.95;">There is something special waiting for you at the <b>Pooja Room</b>.<br>ಹೌದು… ನಿಮಗಾಗಿ ಒಂದು ವಿಶೇಷ ಅಚ್ಚರಿ ಕಾಯುತ್ತಿದೆ.<br><b>ಈಗ ನಿಮ್ಮ ಕೊನೆಯ ಉಡುಗೊರೆಯನ್ನು ಪ್ರೀತಿಯಿಂದ ತೆರೆಯಿರಿ.</b></p>
+        <p class="reveal-subtitle rl"><b>Musical Keyboard ಹಿಂಭಾಗದ ರೂಮ್‌ಗೆ ಹೋಗಿ ನೋಡಿ</b> ❤️</p>
+        <p class="lead rl" style="font-size: 14px; line-height: 1.7;">
+          ಅಲ್ಲಿ ನಿಮಗಾಗಿ ಒಂದು ವಿಶೇಷವಾದ ಬಾಕ್ಸ್ ಕಾಯುತ್ತಿದೆ.<br>
+          <b>ಆ ಬಾಕ್ಸ್ ಅನ್ನು ನೀವೇ ನಿಮ್ಮ ಕೈಯಿಂದ ತೆರೆದು ನೋಡಿ…</b><br>
+          ನಿಮಗಾಗಿ ಒಂದು ಅದ್ಭುತ ಅಚ್ಚರಿ ಕಾದಿದೆ! ❤️
+        </p>
         
         <button class="btn secondary rl" id="celebrateBtn" type="button" style="margin-top: 6px;">
           <span>ಮತ್ತೆ ಸಂಭ್ರಮಿಸಿ 🎉</span>
         </button>
 
-        <p class="rl" style="font-family: Georgia, serif; font-size: 17.5px; color: var(--gold2); margin-top: 6px;">
+        <p class="rl" style="font-family: Georgia, serif; font-size: 18px; color: var(--gold2); margin-top: 6px;">
           ಪ್ರೀತಿಯಿಂದ, <b>Prathviraj</b> ❤️
         </p>
         <p class="small rl">Happy Marriage Anniversary, Ammi ❤️</p>
@@ -1241,7 +1150,7 @@ footer b { color: var(--gold); }
   MADE WITH LOVE | <b>PRATHVIRAJ</b> | 2026
 </footer>
 
-<!-- ==================== GIFT OPENING OVERLAY ==================== -->
+<!-- ==================== STAGE GIFT OPENING OVERLAY ==================== -->
 <div id="giftOverlay" role="dialog" aria-modal="true" aria-label="ಉಡುಗೊರೆ ಅನ್ಲಾಕ್ ಆಗಿದೆ">
   <div class="overlay-card">
     <div class="gift-box-stage" id="stageGiftBox">
@@ -1266,7 +1175,7 @@ footer b { color: var(--gold); }
 "use strict";
 
 /* ============================================================
-   CONFIG — ALL PASSWORDS, RIDDLES & CUSTOMIZATIONS LIVE HERE
+   CONFIG — ALL PASSWORDS & CUSTOMIZATIONS LIVE HERE
    ------------------------------------------------------------
    Case-insensitive and extra spaces are trimmed automatically.
    All assets and sounds are 100% offline & client-side.
@@ -1275,39 +1184,27 @@ const CONFIG = {
   // Passwords for Treasure Hunt Stages 1 to 6
   passwords: {
     1: "LOVE01", // Spoken by Arpitha on phone
-    2: "LOVE02", // Hidden behind the Studio Room mirror (Chocolate card)
+    2: "LOVE02", // Hidden behind the Studio Room mirror
     3: "LOVE03", // Hidden with Hair Clips
-    4: "LOVE04", // Hidden near Diwan Cot (Scrunchies card)
-    5: "LOVE05", // Hidden near Shoe Rack (Sandals card)
-    6: "LOVE06"  // Hidden in Pooja Room (Dresses card)
+    4: "LOVE04", // Hidden near Diwan Cot (Scrunchies)
+    5: "LOVE05", // Hidden near Shoe Rack (Sandals)
+    6: "LOVE06"  // Hidden in Pooja Room (Dresses)
   },
 
-  // The 4 Personal Questions (spells 18 + I + P + ONE = iPhone 18)
-  questions: [
-    { q: "ನಿಮ್ಮ ಗಂಡನ ಹುಟ್ಟಿದ ದಿನಾಂಕ ಯಾವುದು?", a: "18" },
-    { q: "ನಾನು ಎಂಬುದನ್ನು English‌ನಲ್ಲಿ ಒಂದೇ ಅಕ್ಷರದಲ್ಲಿ ಹೇಗೆ ಬರೆಯುತ್ತೀರಿ?", a: "I" },
-    { q: "ನಿಮ್ಮ ಗಂಡನ ಹೆಸರು Prathviraj. ಅವರ ಹೆಸರಿನ ಮೊದಲ ಅಕ್ಷರ ಯಾವುದು?", a: "P" },
-    { q: "1 ಅನ್ನು English ಅಕ್ಷರಗಳಲ್ಲಿ ಬರೆಯಿರಿ.", a: "ONE" }
-  ],
-
-  // Final Reveal Surprise
-  finalGift: "iPhone 18 Pro",
-
-  // Stage Unboxing Celebration Messages
+  // Stage Unboxing Celebration Messages (No spoilers!)
   stageCelebrations: {
     1: { title: "ಮೊದಲ ಬಾಗಿಲು ತೆರೆದಿದೆ! 📞", text: "ಅರ್ಪಿತಾಳ ಕರೆ ನಿಮಗೆ ಮೊದಲ ಸುಳಿವನ್ನು ತಲುಪಿಸಿತು. ಪ್ರೀತಿಯ ಪ್ರಯಾಣ ಶುರುವಾಗಿದೆ…" },
-    2: { title: "ಚಾಕೊಲೇಟ್ ಸಿಕ್ಕಿತು! 🍫", text: "ಕನ್ನಡಿಯ ಹಿಂದಿನ ನಿಮ್ಮ ಸಿಹಿ ಅಚ್ಚರಿ ನಿಮ್ಮ ಕೈಗೆ ಸೇರಿತು. ಮುಂದೆ ಸಾಗೋಣ…" },
+    2: { title: "ಮೊದಲ ಉಡುಗೊರೆ ಸಿಕ್ಕಿತು! ✨", text: "ಕನ್ನಡಿಯ ಹಿಂದಿನ ನಿಮ್ಮ ಅಚ್ಚರಿ ನಿಮ್ಮ ಕೈಗೆ ಸೇರಿತು. ಮುಂದೆ ಸಾಗೋಣ…" },
     3: { title: "ಅಚ್ಚರಿ ನಿಮ್ಮದಾಯಿತು! 🌸", text: "ಇನ್ನೊಂದು ಮುದ್ದಾದ ಪುಟ್ಟ ಸಂತೋಷ ನಿಮ್ಮನ್ನು ಕಾಯುತ್ತಿದೆ…" },
     4: { title: "Diwan Cot ಬಳಿ ಸಿಕ್ಕಿತು! 🛏️", text: "ನಿಮ್ಮ ದಿನ ಇನ್ನಷ್ಟು ಮುದ್ದಾಗುತ್ತಿದೆ… ಸುಳಿವು ಮುಂದುವರಿಯುತ್ತಿದೆ!" },
     5: { title: "Shoe Rack ಬಳಿ ಸಿಕ್ಕಿತು! 👟", text: "ಇನ್ನೂ ಮುಗಿದಿಲ್ಲ — ಕೊನೆಯ ಸುಳಿವು Pooja Room ನಲ್ಲಿದೆ!" },
-    6: { title: "ಕೊನೆಯ ಸುಳಿವು ಪೂರ್ಣವಾಯಿತು! 🪔", text: "ಈಗ ನಿಮ್ಮ ಪ್ರೀತಿಯ 4 ಸುಂದರ ಪ್ರಶ್ನೆಗಳಿಗೆ ಉತ್ತರಿಸಿ…" }
+    6: { title: "5ನೇ ಉಡುಗೊರೆ ಸಿಕ್ಕಿತು! 🪔", text: "ಈಗ ನಿಮ್ಮ ಕೊನೆಯ ಮತ್ತು ಅತ್ಯಂತ ವಿಶೇಷವಾದ ಅಚ್ಚರಿ ಕಾಯುತ್ತಿದೆ…" }
   },
 
   // Error feedback messages
   messages: {
     empty: "ಮೊದಲು password ನಮೂದಿಸಿ ❤️",
     wrongPassword: "ಸರಿಯಾಗಿಲ್ಲ, ಪುಟ್ಟು ಅಮ್ಮಿ… ಮತ್ತೊಮ್ಮೆ ಪ್ರಯತ್ನಿಸಿ ❤️",
-    wrongAnswer: "ಸ್ವಲ್ಪ ಮತ್ತೊಮ್ಮೆ ಯೋಚಿಸಿ… ನಿಮಗೆ ಖಂಡಿತಾ ಗೊತ್ತು ❤️",
     correctStage: "ಸರಿಯಾಗಿದೆ! ಅಚ್ಚರಿ ತೆರೆಯುತ್ತಿದೆ… ❤️"
   }
 };
@@ -1437,13 +1334,12 @@ musicBtn.addEventListener("click", () => {
 });
 
 /* ============================================================
-   PROGRESS INDICATOR
+   PROGRESS INDICATOR (Total: 6 Gifts / Stages)
    ============================================================ */
-// Total steps: 11 (0: welcome, 1-6: clues, 7-10: questions, 11: final)
-const TOTAL_STEPS = 11;
+const TOTAL_STEPS = 7; // 0: welcome, 1: Arpitha, 2-6: Gifts 1-5, 7: Final Gift 6
 let currentStep = 0;
 const heartsRow = $("#heartsRow");
-for (let i = 0; i < 10; i++) {
+for (let i = 0; i < 6; i++) {
   const span = document.createElement("span");
   span.textContent = "❤️";
   heartsRow.appendChild(span);
@@ -1456,9 +1352,9 @@ function updateProgress() {
   
   let label = "ಪ್ರೀತಿಯ ಪ್ರಯಾಣ";
   if (currentStep === 0) label = "ಪ್ರೀತಿಯ ಪ್ರಯಾಣ";
-  else if (currentStep <= 6) label = `ಸುಳಿವು ${currentStep} / 6`;
-  else if (currentStep <= 10) label = `ಪ್ರಶ್ನೆ ${currentStep - 6} / 4`;
-  else label = "ಅಚ್ಚರಿ ತಲುಪಿತು ❤️";
+  else if (currentStep === 1) label = "ಮೊದಲ ಬಾಗಿಲು";
+  else if (currentStep <= 6) label = `ಉಡುಗೊರೆ ${currentStep - 1} / 6`;
+  else label = "ಕೊನೆಯ ಅಚ್ಚರಿ ❤️";
   
   $("#progressLabel").textContent = label;
   
@@ -1549,8 +1445,8 @@ function closeStageUnboxing() {
   if (autoCloseTimer) { clearTimeout(autoCloseTimer); autoCloseTimer = null; }
   giftOverlay.classList.remove("show");
   if (pendingStageNext) {
-    if (pendingStageNext.id === "screen-questions") {
-      loadQuestion(0);
+    if (pendingStageNext.id === "screen-final") {
+      setupFinalReveal();
     }
     switchScreen(pendingStageNext.id, pendingStageNext.step);
     pendingStageNext = null;
@@ -1580,7 +1476,7 @@ const NEXT_STAGE_MAP = {
   3: { nextId: "screen-s4", nextStep: 4 },
   4: { nextId: "screen-s5", nextStep: 5 },
   5: { nextId: "screen-s6", nextStep: 6 },
-  6: { nextId: "screen-questions", nextStep: 7 }
+  6: { nextId: "screen-final", nextStep: 7 } // Directly to Final Gift (Musical Keyboard Backside Room)
 };
 
 $$("form[data-stage-form]").forEach(form => {
@@ -1625,136 +1521,20 @@ function shakeElement(el) {
 }
 
 /* ============================================================
-   QUESTIONS RIDDLE ENGINE (Steps 7 to 10)
-   ============================================================ */
-let activeQIndex = 0;
-const qQuestionText = $("#qQuestionText");
-const qBadge = $("#qBadge");
-const qForm = $("#qForm");
-const qInput = $("#qInput");
-const qMsg = $("#qMsg");
-const qEarnedWrap = $("#qEarnedWrap");
-const qEarnedToken = $("#qEarnedToken");
-const qNextBtn = $("#qNextBtn");
-const qNextBtnText = $("#qNextBtnText");
-const qCollectedRow = $("#qCollectedRow");
-
-function renderCollectedTokens(uptoIndex) {
-  qCollectedRow.innerHTML = "";
-  for (let i = 0; i < uptoIndex; i++) {
-    const t = document.createElement("span");
-    t.className = "token sm";
-    t.textContent = CONFIG.questions[i].a;
-    qCollectedRow.appendChild(t);
-  }
-}
-
-function loadQuestion(index) {
-  activeQIndex = index;
-  const item = CONFIG.questions[index];
-  qBadge.textContent = `ಪ್ರೀತಿಯ ಪ್ರಶ್ನೆ 0${index + 1} / 0${CONFIG.questions.length}`;
-  qQuestionText.textContent = item.q;
-  qForm.style.display = "flex";
-  qEarnedWrap.style.display = "none";
-  qMsg.textContent = "";
-  qMsg.className = "msg";
-  qInput.disabled = false;
-  qInput.value = "";
-  
-  const isLast = (index === CONFIG.questions.length - 1);
-  qNextBtnText.textContent = isLast ? "ಕೊನೆಯ ಅಚ್ಚರಿ ನೋಡಿ ❤️" : "ಮುಂದಿನ ಪ್ರಶ್ನೆ ❤️";
-  
-  renderCollectedTokens(index);
-  
-  setTimeout(() => {
-    try { qInput.focus({ preventScroll: true }); } catch (e) { qInput.focus(); }
-  }, 250);
-}
-
-qForm.addEventListener("submit", e => {
-  e.preventDefault();
-  getAudio();
-  const item = CONFIG.questions[activeQIndex];
-  const entered = norm(qInput.value);
-
-  if (!entered) {
-    qMsg.textContent = "ದಯವಿಟ್ಟು ಉತ್ತರ ನಮೂದಿಸಿ ❤️";
-    qMsg.className = "msg";
-    shakeElement(qForm);
-    return;
-  }
-
-  if (entered === norm(item.a)) {
-    playCorrect();
-    currentStep = 6 + activeQIndex + 1;
-    updateProgress();
-
-    qEarnedToken.textContent = item.a;
-    qForm.style.display = "none";
-    qEarnedWrap.style.display = "flex";
-    renderCollectedTokens(activeQIndex + 1);
-
-    // Burst mini celebratory particles on the question card
-    const card = $("#qCard");
-    for (let i = 0; i < 12; i++) {
-      const p = document.createElement("span");
-      p.className = "burst-particle";
-      p.textContent = (i % 2 === 0 ? "❤️" : "✨");
-      p.style.left = "50%"; p.style.top = "40%";
-      const angle = Math.random() * Math.PI * 2;
-      const dist = 60 + Math.random() * 60;
-      p.style.setProperty("--dx", Math.cos(angle) * dist + "px");
-      p.style.setProperty("--dy", (Math.sin(angle) * dist - 30) + "px");
-      p.style.setProperty("--r", (Math.random() * 80 - 40) + "deg");
-      card.appendChild(p);
-      setTimeout(() => p.remove(), 1200);
-    }
-  } else {
-    qMsg.textContent = CONFIG.messages.wrongAnswer;
-    qMsg.className = "msg";
-    shakeElement(qForm);
-    playWrong();
-    qInput.select();
-  }
-});
-
-qNextBtn.addEventListener("click", () => {
-  if (activeQIndex + 1 < CONFIG.questions.length) {
-    loadQuestion(activeQIndex + 1);
-  } else {
-    // Navigate to Final Reveal Screen
-    setupFinalReveal();
-    switchScreen("screen-final", 11);
-  }
-});
-
-/* ============================================================
-   FINAL REVEAL SCREEN
+   FINAL SCREEN : GIFT 06 (MUSICAL KEYBOARD BACKSIDE ROOM)
    ============================================================ */
 let finalRevealed = false;
 const finalCard = $("#finalCard");
-const finalTokensRow = $("#finalTokensRow");
 const finalGiftWrap = $("#finalGiftWrap");
 const tapHint = $("#tapHint");
 const revealBlock = $("#revealBlock");
-const giftNameReveal = $("#giftNameReveal");
 
 function setupFinalReveal() {
   finalRevealed = false;
   finalCard.classList.remove("revealed");
-  finalTokensRow.classList.remove("fuse");
   revealBlock.classList.add("hidden");
   revealBlock.classList.remove("show");
   tapHint.classList.remove("bye");
-  
-  // Render assembled tokens: [18] [I] [P] [ONE]
-  finalTokensRow.innerHTML = "";
-  CONFIG.questions.forEach(q => {
-    const tok = document.createElement("span");
-    tok.className = "token";
-    tok.textContent = q.a;
-    finalTokensRow.appendChild(tok);
-  });
 }
 
 function doFinalReveal() {
@@ -1763,9 +1543,7 @@ function doFinalReveal() {
   getAudio();
   playGrandReveal();
 
-  giftNameReveal.textContent = CONFIG.finalGift;
   finalCard.classList.add("revealed");
-  finalTokensRow.classList.add("fuse");
   tapHint.classList.add("bye");
 
   // Grand burst of golden stars and pink hearts
