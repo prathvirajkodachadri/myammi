@@ -408,6 +408,52 @@ h2 { font-size: 22px; }
 .w2 { animation-delay: 0.4s; }
 @keyframes waveFade { 0%, 100% { opacity: 0.2; } 40% { opacity: 1; } }
 
+/* Audio Tap Hint Banner (appears if browser blocks autoplay pending user gesture) */
+.audio-tap-hint {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: linear-gradient(135deg, rgba(217, 93, 127, 0.32), rgba(247, 227, 176, 0.22));
+  border: 1px solid rgba(248, 201, 212, 0.5);
+  color: #fff;
+  font-size: 12.5px;
+  font-weight: 600;
+  padding: 8px 14px;
+  border-radius: 999px;
+  margin: 6px auto 10px;
+  cursor: pointer;
+  box-shadow: 0 4px 18px rgba(217, 93, 127, 0.35);
+  animation: pulseHint 2s infinite ease-in-out;
+  transition: opacity 0.35s ease, transform 0.35s ease, max-height 0.35s ease, margin 0.35s ease, padding 0.35s ease;
+  max-height: 52px;
+  overflow: hidden;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  width: 100%;
+}
+.audio-tap-hint.hidden {
+  opacity: 0;
+  max-height: 0;
+  margin: 0;
+  padding: 0;
+  border-width: 0;
+  pointer-events: none;
+  transform: scale(0.95);
+}
+.hint-pulse {
+  display: inline-block;
+  animation: bounceHint 1.2s infinite ease-in-out;
+}
+@keyframes bounceHint {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-3px) scale(1.15); }
+}
+@keyframes pulseHint {
+  0%, 100% { transform: scale(1); box-shadow: 0 4px 18px rgba(217, 93, 127, 0.35); }
+  50% { transform: scale(1.02); box-shadow: 0 6px 22px rgba(248, 201, 212, 0.55); }
+}
+
 /* Screen Recording Reminder Box */
 .record-box {
   background: linear-gradient(135deg, rgba(255, 238, 225, 0.08), rgba(217, 93, 127, 0.12));
@@ -768,8 +814,19 @@ footer b { color: var(--gold); }
 </head>
 <body>
 
-<!-- Custom Uploaded Romantic Song (song.mp3) -->
-<audio id="bgSong" src="song.mp3" preload="auto" loop></audio>
+<!-- Custom Uploaded Romantic Song (song.mp3 - Autoplays by default) -->
+<audio id="bgSong" src="song.mp3" preload="auto" loop autoplay playsinline webkit-playsinline></audio>
+<script>
+  // Attempt immediate instant playback at earliest HTML parse time
+  try {
+    var _initSong = document.getElementById("bgSong");
+    if (_initSong) {
+      _initSong.volume = 0.85;
+      var _p = _initSong.play();
+      if (_p !== undefined) { _p.catch(function(){}); }
+    }
+  } catch(e) {}
+</script>
 
 <!-- Ambient Layers -->
 <div id="petals" aria-hidden="true"></div>
@@ -853,6 +910,12 @@ footer b { color: var(--gold); }
       <div class="record-box">
         <h4><i></i>ಈ ಕ್ಷಣವನ್ನು ನೆನಪಿಗಾಗಿ ಉಳಿಸಿಕೊಳ್ಳಿ</h4>
         <p>Adventure ಶುರು ಮಾಡುವ ಮೊದಲು phone‌ನ <b>Screen Recording ಆನ್</b> ಮಾಡಿಕೊಳ್ಳಿ. ಹಾಗೆ ನಿಮ್ಮ reactions video ಮಾಡಿ ಈ ಸುಂದರ ಕ್ಷಣವನ್ನು ನೆನಪಾಗಿ ಉಳಿಸೋಣ. ❤️</p>
+      </div>
+
+      <!-- Music Tap Hint (appears if browser policy requires initial touch to output audio) -->
+      <div id="audioTapHint" class="audio-tap-hint hidden" role="button" tabindex="0" aria-label="Play romantic music">
+        <span class="hint-pulse">🎵</span>
+        <span>ಸಂಗೀತ ಕೇಳಲು ಪರದೆಯನ್ನು ಮುಟ್ಟಿ • Tap to play music ❤️</span>
       </div>
 
       <button class="btn" id="startBtn" type="button">
@@ -1244,14 +1307,17 @@ const norm = val => String(val || "").trim().toUpperCase();
 
 /* ============================================================
    AUDIO ENGINE : CUSTOM SONG (song.mp3) + SYNTHESIS FALLBACK
-   Plays song.mp3 automatically on user interaction, ON by default
+   Plays song.mp3 automatically by default when opening website
    ============================================================ */
 const bgSong = $("#bgSong");
+const musicBtn = $("#musicBtn");
+const musicLabel = $("#musicLabel");
+const audioTapHint = $("#audioTapHint");
+
 let audioCtx = null;
-let musicPlaying = true; // Music by default ON
+let userWantsMusic = true; // Music is ON by default
 let synthTimer = null;
 let melodyIndex = 0;
-let audioStarted = false;
 
 // Fallback lullaby melody (frequencies in Hz)
 const MELODY = [659, 784, 880, 784, 659, 587, 659, 784, 880, 988, 880, 784, 659, 587, 523, 587, 659, 784, 880, 784, 659, 587, 659, 0];
@@ -1263,7 +1329,7 @@ function getAudio() {
     if (AudioContextClass) audioCtx = new AudioContextClass();
   }
   if (audioCtx && audioCtx.state === "suspended") {
-    audioCtx.resume();
+    audioCtx.resume().catch(() => {});
   }
   return audioCtx;
 }
@@ -1287,7 +1353,7 @@ function playTone(freq, dur = 0.45, vol = 0.05, type = "sine", delay = 0) {
 function startSynthMusic() {
   if (synthTimer) return;
   synthTimer = setInterval(() => {
-    if (!musicPlaying) return;
+    if (!userWantsMusic) return;
     const note = MELODY[melodyIndex % MELODY.length];
     if (note) playTone(note, 0.55, 0.045, "sine");
     if (melodyIndex % 4 === 0) {
@@ -1302,18 +1368,46 @@ function stopSynthMusic() {
   if (synthTimer) { clearInterval(synthTimer); synthTimer = null; }
 }
 
+function isAudioActive() {
+  return bgSong && !bgSong.paused;
+}
+
+function updateMusicUI() {
+  const active = isAudioActive();
+  musicBtn.classList.toggle("playing", active);
+  musicLabel.textContent = userWantsMusic ? "Music: On" : "Music: Off";
+}
+
+function showHint() {
+  if (audioTapHint && userWantsMusic && !isAudioActive()) {
+    audioTapHint.classList.remove("hidden");
+  }
+}
+
+function hideHint() {
+  if (audioTapHint) {
+    audioTapHint.classList.add("hidden");
+  }
+}
+
+// Master function to trigger music playback
 function startMusic() {
-  musicPlaying = true;
-  updateMusicUI();
-  
-  if (bgSong && bgSong.src) {
+  if (!userWantsMusic) return;
+  getAudio();
+
+  if (bgSong) {
+    bgSong.volume = 0.85;
     const playPromise = bgSong.play();
     if (playPromise !== undefined) {
       playPromise.then(() => {
+        hideHint();
         stopSynthMusic();
-      }).catch(() => {
-        // Fallback to synthesizer if audio element playback is prevented
-        startSynthMusic();
+        updateMusicUI();
+      }).catch((err) => {
+        console.log("Autoplay waiting for touch gesture:", err);
+        if (userWantsMusic) {
+          showHint();
+        }
       });
     }
   } else {
@@ -1322,11 +1416,12 @@ function startMusic() {
 }
 
 function stopMusic() {
-  musicPlaying = false;
+  userWantsMusic = false;
   if (bgSong) {
     try { bgSong.pause(); } catch(e) {}
   }
   stopSynthMusic();
+  hideHint();
   updateMusicUI();
 }
 
@@ -1345,30 +1440,72 @@ function playGrandReveal() {
   [523, 659, 784, 1047, 1319, 1568, 2093].forEach((f, i) => playTone(f, 0.8, 0.08, "sine", i * 0.08));
 }
 
-const musicBtn = $("#musicBtn");
-const musicLabel = $("#musicLabel");
-function updateMusicUI() {
-  musicBtn.classList.toggle("playing", musicPlaying);
-  musicLabel.textContent = musicPlaying ? "Music: On" : "Music: Off";
-}
-
-musicBtn.addEventListener("click", () => {
+// Music toggle button in top navigation
+musicBtn.addEventListener("click", (e) => {
+  e.stopPropagation();
   getAudio();
-  audioStarted = true;
-  if (musicPlaying) stopMusic();
-  else startMusic();
+  if (isAudioActive()) {
+    stopMusic();
+  } else {
+    userWantsMusic = true;
+    startMusic();
+  }
 });
 
-// Unlock audio on first touch anywhere (browser autoplay requirement)
-function unlockAndPlayAudio() {
-  if (!audioStarted && musicPlaying) {
+// Hint banner click
+if (audioTapHint) {
+  audioTapHint.addEventListener("click", (e) => {
+    e.stopPropagation();
+    userWantsMusic = true;
+    startMusic();
+  });
+}
+
+// Global user interaction capture: start song on the very first touch anywhere
+const unlockEvents = ["pointerdown", "touchstart", "click", "keydown"];
+function onFirstGesture() {
+  if (userWantsMusic && (!bgSong || bgSong.paused)) {
     getAudio();
     startMusic();
-    audioStarted = true;
   }
 }
-window.addEventListener("click", unlockAndPlayAudio, { passive: true });
-window.addEventListener("touchstart", unlockAndPlayAudio, { passive: true });
+unlockEvents.forEach((evt) => {
+  window.addEventListener(evt, onFirstGesture, { passive: true, capture: true });
+  document.addEventListener(evt, onFirstGesture, { passive: true, capture: true });
+});
+
+// Audio element events
+if (bgSong) {
+  bgSong.addEventListener("play", () => {
+    hideHint();
+    stopSynthMusic();
+    updateMusicUI();
+  });
+  bgSong.addEventListener("pause", () => {
+    updateMusicUI();
+  });
+  bgSong.addEventListener("ended", () => {
+    if (userWantsMusic) {
+      bgSong.currentTime = 0;
+      bgSong.play().catch(() => {});
+    }
+  });
+  bgSong.addEventListener("error", () => {
+    console.warn("song.mp3 load error, switching to synth music box");
+    if (userWantsMusic) startSynthMusic();
+  });
+}
+
+// Attempt immediate playback across page load lifecycles
+startMusic();
+window.addEventListener("DOMContentLoaded", startMusic);
+window.addEventListener("load", startMusic);
+window.addEventListener("pageshow", startMusic);
+document.addEventListener("visibilitychange", () => {
+  if (!document.hidden && userWantsMusic && (!bgSong || bgSong.paused)) {
+    startMusic();
+  }
+});
 
 /* ============================================================
    PROGRESS INDICATOR (Total: 5 Gifts)
@@ -1501,8 +1638,8 @@ $("#stageContinueBtn").addEventListener("click", () => {
    START BUTTON EVENT
    ============================================================ */
 $("#startBtn").addEventListener("click", () => {
+  userWantsMusic = true;
   getAudio();
-  audioStarted = true;
   startMusic();
   playCorrect();
   switchScreen("screen-s1", 1);
