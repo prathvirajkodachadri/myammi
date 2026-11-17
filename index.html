@@ -21,7 +21,6 @@
    ROMANTIC ANNIVERSARY TREASURE HUNT FOR AMMI ❤️
    Classic & Stylish Typography (Kannada + English)
    Optimized for OnePlus Nord CE 3 & Android Mobile
-   100% Offline, Pure Inline CSS / SVG / Web Audio API
    ============================================================ */
 *, *::before, *::after {
   margin: 0; padding: 0; box-sizing: border-box;
@@ -162,14 +161,14 @@ body::after {
   font-family: var(--font-display);
 }
 
-/* Romantic Music Button (ON by default) */
+/* Romantic Music Button (Word changed to 'Music', ON by default) */
 #musicBtn {
   background: rgba(255, 248, 236, 0.08);
   border: 1px solid rgba(232, 198, 135, 0.55);
   color: var(--gold2);
   border-radius: 999px;
-  padding: 6px 13px;
-  font-size: 11.5px;
+  padding: 6px 14px;
+  font-size: 12px;
   font-weight: 700;
   display: flex; gap: 6px; align-items: center;
   backdrop-filter: blur(8px);
@@ -636,7 +635,7 @@ input:disabled { opacity: 0.65; }
 }
 
 /* ============================================================
-   FINAL SCREEN & GRAND REVEAL (Bedroom Mirror Backside)
+   FINAL SCREEN & GRAND REVEAL (Top of the TV Stand)
    ============================================================ */
 .rays {
   position: absolute; inset: -40px; pointer-events: none; opacity: 0;
@@ -769,6 +768,9 @@ footer b { color: var(--gold); }
 </head>
 <body>
 
+<!-- Custom Uploaded Romantic Song (song.mp3) -->
+<audio id="bgSong" src="song.mp3" preload="auto" loop></audio>
+
 <!-- Ambient Layers -->
 <div id="petals" aria-hidden="true"></div>
 <div id="bgHearts" aria-hidden="true"></div>
@@ -784,9 +786,9 @@ footer b { color: var(--gold); }
       <small>For Ammi</small>
     </div>
   </div>
-  <button id="musicBtn" class="playing" type="button" aria-label="ಸಂಗೀತ ಆನ್ ಅಥವಾ ಆಫ್ ಮಾಡಿ">
+  <button id="musicBtn" class="playing" type="button" aria-label="Music On or Off">
     <div class="music-bars"><span></span><span></span><span></span></div>
-    <span id="musicLabel">ಸಂಗೀತ: ಆನ್</span>
+    <span id="musicLabel">Music: On</span>
   </button>
 </header>
 
@@ -1061,7 +1063,7 @@ footer b { color: var(--gold); }
     </div>
   </section>
 
-  <!-- ==================== SCREEN FINAL : GIFT 05 (BEDROOM MIRROR BACKSIDE) ==================== -->
+  <!-- ==================== SCREEN FINAL : GIFT 05 (TOP OF THE TV STAND) ==================== -->
   <section class="screen" id="screen-final">
     <div class="card" id="finalCard">
       <div class="rays" id="rays"></div>
@@ -1113,15 +1115,15 @@ footer b { color: var(--gold); }
 
       <p class="tap-hint" id="tapHint" style="position: relative; z-index: 2;">ಉಡುಗೊರೆಯನ್ನು ತೆರೆಯಲು ಮೆಲ್ಲಗೆ ತಟ್ಟಿರಿ ❤️</p>
 
-      <!-- Cascading Reveal Block Directing to Bedroom Mirror Backside -->
+      <!-- Cascading Reveal Block Directing to Top of the TV Stand -->
       <div class="reveal-block hidden" id="revealBlock" style="position: relative; z-index: 2;">
         <h1 class="reveal-title rl">
-          <span class="grad">Bedroom Mirror Backside</span>
+          <span class="grad">Top of the TV Stand</span>
           <span style="display: inline-block; animation: heartPulse 1.8s infinite;">❤️</span>
         </h1>
         <div class="divider rl"><svg viewBox="0 0 24 24"><path d="M12 21C6.5 16.5 2 12.7 2 8.9 2 6.1 4.2 4 6.8 4c2 0 3.8 1.1 5.2 3.1C13.4 5.1 15.2 4 17.2 4 19.8 4 22 6.1 22 8.9c0 3.8-4.5 7.6-10 12.1z"/></svg></div>
         
-        <p class="reveal-subtitle rl"><b>Bedroom ಕನ್ನಡಿಯ ಹಿಂದೆ ನೋಡಿ</b> ❤️</p>
+        <p class="reveal-subtitle rl"><b>TV Stand ಮೇಲೆ ನೋಡಿ</b> ❤️</p>
         <p class="lead rl" style="font-size: 15px; line-height: 1.7;">
           ನಿಮಗಾಗಿ ಒಂದು ಅದ್ಭುತ ಅಚ್ಚರಿ ಕಾದಿದೆ! ❤️
         </p>
@@ -1241,15 +1243,17 @@ const norm = val => String(val || "").trim().toUpperCase();
 })();
 
 /* ============================================================
-   WEB AUDIO API — GENTLE ROMANTIC LULLABY & CHIMES (MUSIC ON BY DEFAULT)
+   AUDIO ENGINE : CUSTOM SONG (song.mp3) + SYNTHESIS FALLBACK
+   Plays song.mp3 automatically on user interaction, ON by default
    ============================================================ */
+const bgSong = $("#bgSong");
 let audioCtx = null;
 let musicPlaying = true; // Music by default ON
-let musicTimer = null;
+let synthTimer = null;
 let melodyIndex = 0;
 let audioStarted = false;
 
-// Romantic lullaby melody (frequencies in Hz)
+// Fallback lullaby melody (frequencies in Hz)
 const MELODY = [659, 784, 880, 784, 659, 587, 659, 784, 880, 988, 880, 784, 659, 587, 523, 587, 659, 784, 880, 784, 659, 587, 659, 0];
 const BASS = [262, 196, 220, 196, 175, 196, 262, 0];
 
@@ -1280,12 +1284,9 @@ function playTone(freq, dur = 0.45, vol = 0.05, type = "sine", delay = 0) {
   osc.stop(t + dur + 0.06);
 }
 
-function startMusic() {
-  if (!getAudio()) return;
-  musicPlaying = true;
-  updateMusicUI();
-  if (musicTimer) return;
-  musicTimer = setInterval(() => {
+function startSynthMusic() {
+  if (synthTimer) return;
+  synthTimer = setInterval(() => {
     if (!musicPlaying) return;
     const note = MELODY[melodyIndex % MELODY.length];
     if (note) playTone(note, 0.55, 0.045, "sine");
@@ -1297,12 +1298,39 @@ function startMusic() {
   }, 440);
 }
 
+function stopSynthMusic() {
+  if (synthTimer) { clearInterval(synthTimer); synthTimer = null; }
+}
+
+function startMusic() {
+  musicPlaying = true;
+  updateMusicUI();
+  
+  if (bgSong && bgSong.src) {
+    const playPromise = bgSong.play();
+    if (playPromise !== undefined) {
+      playPromise.then(() => {
+        stopSynthMusic();
+      }).catch(() => {
+        // Fallback to synthesizer if audio element playback is prevented
+        startSynthMusic();
+      });
+    }
+  } else {
+    startSynthMusic();
+  }
+}
+
 function stopMusic() {
   musicPlaying = false;
-  if (musicTimer) { clearInterval(musicTimer); musicTimer = null; }
+  if (bgSong) {
+    try { bgSong.pause(); } catch(e) {}
+  }
+  stopSynthMusic();
   updateMusicUI();
 }
 
+/* Sound effects (play layered on top of the song) */
 function playCorrect() {
   [523, 659, 784, 1047].forEach((f, i) => playTone(f, 0.5, 0.07, "sine", i * 0.1));
 }
@@ -1321,7 +1349,7 @@ const musicBtn = $("#musicBtn");
 const musicLabel = $("#musicLabel");
 function updateMusicUI() {
   musicBtn.classList.toggle("playing", musicPlaying);
-  musicLabel.textContent = musicPlaying ? "ಸಂಗೀತ: ಆನ್" : "ಸಂಗೀತ: ಆಫ್";
+  musicLabel.textContent = musicPlaying ? "Music: On" : "Music: Off";
 }
 
 musicBtn.addEventListener("click", () => {
@@ -1334,11 +1362,9 @@ musicBtn.addEventListener("click", () => {
 // Unlock audio on first touch anywhere (browser autoplay requirement)
 function unlockAndPlayAudio() {
   if (!audioStarted && musicPlaying) {
-    const ctx = getAudio();
-    if (ctx && ctx.state !== "closed") {
-      startMusic();
-      audioStarted = true;
-    }
+    getAudio();
+    startMusic();
+    audioStarted = true;
   }
 }
 window.addEventListener("click", unlockAndPlayAudio, { passive: true });
@@ -1371,9 +1397,7 @@ function updateProgress() {
   
   const heartSpans = $$("span", heartsRow);
   heartSpans.forEach((h, idx) => {
-    if (currentStep === 0) {
-      h.classList.remove("on");
-    } else if (currentStep === 1) {
+    if (currentStep <= 1) {
       h.classList.remove("on");
     } else if (currentStep >= TOTAL_STEPS) {
       h.classList.add("on");
@@ -1492,7 +1516,7 @@ const NEXT_STAGE_MAP = {
   2: { nextId: "screen-s3", nextStep: 3 }, // Gift 1 -> Gift 2 (Chudidar)
   3: { nextId: "screen-s4", nextStep: 4 }, // Gift 2 -> Gift 3 (Slipper)
   4: { nextId: "screen-s5", nextStep: 5 }, // Gift 3 -> Gift 4 (Earrings)
-  5: { nextId: "screen-final", nextStep: 6 } // Gift 4 -> Gift 5 (iPhone - Bedroom mirror backside)
+  5: { nextId: "screen-final", nextStep: 6 } // Gift 4 -> Gift 5 (iPhone - Top of the TV Stand)
 };
 
 $$("form[data-stage-form]").forEach(form => {
@@ -1537,7 +1561,7 @@ function shakeElement(el) {
 }
 
 /* ============================================================
-   FINAL SCREEN : GIFT 05 (BEDROOM MIRROR BACKSIDE)
+   FINAL SCREEN : GIFT 05 (TOP OF THE TV STAND)
    ============================================================ */
 let finalRevealed = false;
 const finalCard = $("#finalCard");
