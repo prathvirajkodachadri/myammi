@@ -2,7 +2,7 @@
 
 A romantic interactive anniversary scavenger hunt web application created with love by **Prathviraj** for **Ammi**.
 
-Designed and optimized to run smoothly on Android mobile phones (including the **OnePlus Nord CE 3**), this experience guides Ammi through 6 real-life gifts with interactive clues, audio chimes, animated SVG artwork, and a suspenseful final reveal.
+Designed and optimized to run smoothly on Android mobile phones (including the **OnePlus Nord CE 3**), this experience guides Ammi through 5 real-life gifts with interactive clues, audio chimes, animated SVG artwork, and a suspenseful final reveal.
 
 ---
 
@@ -12,19 +12,20 @@ Designed and optimized to run smoothly on Android mobile phones (including the *
    - Screen-fit responsive layout (`max-width: 440px`) designed for 20:9 tall aspect ratio viewports (~392×872px).
    - High-contrast velvet wine (`#1a080d`) and champagne gold typography.
    - Touch-optimized buttons, full Kannada Unicode font fallback, and clean mobile keyboard interaction.
+   - Music **ON by default** with gentle romantic lullaby.
 
-2. **The 6 Gifts Treasure Hunt**:
+2. **The 5 Gifts Treasure Hunt**:
    - **Welcome Screen**: Anniversary celebration date (*November 18*), screen recording reminder, beating heart artwork, and journey start button.
    - **Stage 1 (Call Arpitha)**: Ringing phone illustration & clue to call Arpitha for password `LOVE01` to unlock the journey.
-   - **Stage 2 (Gift 01 • Studio Room)**: Studio room vanity mirror illustration & clue for password `LOVE02`.
-   - **Stage 3 (Gift 02 • Hair Clips)**: Blooming floral hair accessory illustration & clue for password `LOVE03`.
-   - **Stage 4 (Gift 03 • Diwan Cot)**: Silk scrunchie illustration & clue for password `LOVE04`.
-   - **Stage 5 (Gift 04 • Shoe Rack)**: Shoe rack clue & password `LOVE05`.
-   - **Stage 6 (Gift 05 • Pooja Room)**: Pooja room clue & password `LOVE06`.
-   - **Final Screen (Gift 06 • The Grand Mystery)**: Directs Ammi to the **Musical Keyboard Backside Room** where a special mystery box awaits. When she physically opens the box in that room, she discovers the grand anniversary surprise!
+   - **Stage 2 (Gift 01 • Saree)**: Pooja Room clue (`Pooja Room ಬಳಿ ನೋಡಿ`) & password `LOVE02`.
+   - **Stage 3 (Gift 02 • Chudidar)**: Diwan Cot clue (`Diwan Cot ಬಳಿ ನೋಡಿ`) & password `LOVE03`.
+   - **Stage 4 (Gift 03 • Slipper)**: Shoe Rack clue (`Shoe Rack ಬಳಿ ನೋಡಿ`) & password `LOVE04`.
+   - **Stage 5 (Gift 04 • Earrings)**: Studio Room / Mirror clue (`Studio Room — ಕನ್ನಡಿಯ ಹಿಂದೆ ನೋಡಿ`) & password `LOVE05`.
+   - **Final Screen (Gift 05 • The Grand Mystery)**: Directs Ammi to the **Bedroom Mirror Backside** (`Bedroom ಕನ್ನಡಿಯ ಹಿಂದೆ ನೋಡಿ`) where a special mystery box awaits. When she physically opens the box, she discovers the grand anniversary surprise!
 
 3. **Stage-by-Stage Animated Gift Box Unboxing**:
    - Every unlocked stage pops open a 3D animated gift box with flying confetti hearts, congratulatory message, and sound chime.
+   - Advances only when Ammi explicitly clicks **"ಮುಂದುವರಿಯಿರಿ ❤️"**.
 
 4. **100% Offline & Zero External Dependencies**:
    - Pure inline HTML, CSS, bespoke inline SVG illustrations, and Web Audio API synthesizer for romantic background music box and chimes. No external mp3 files or CDN font files that could fail on slow mobile networks.
@@ -33,18 +34,17 @@ Designed and optimized to run smoothly on Android mobile phones (including the *
 
 ## 🛠️ Customization
 
-All passwords, locations, and celebration messages can be customized easily in `index.html` inside the `CONFIG` object:
+All passwords and celebration messages can be customized easily in `index.html` inside the `CONFIG` object:
 
 ```javascript
 const CONFIG = {
-  // Passwords for Stages 1 to 6 (case-insensitive)
+  // Passwords for Stages 1 to 5 (case-insensitive)
   passwords: {
-    1: "LOVE01", // Spoken by Arpitha
-    2: "LOVE02", // Studio room mirror
-    3: "LOVE03", // Hair clips
-    4: "LOVE04", // Diwan cot
-    5: "LOVE05", // Shoe rack
-    6: "LOVE06"  // Pooja room
+    1: "LOVE01", // Stage 1: Spoken by Arpitha
+    2: "LOVE02", // Stage 2: Gift 01 • Saree (Pooja Room)
+    3: "LOVE03", // Stage 3: Gift 02 • Chudidar (Diwan Cot)
+    4: "LOVE04", // Stage 4: Gift 03 • Slipper (Shoe Rack)
+    5: "LOVE05"  // Stage 5: Gift 04 • Earrings (Studio Room / Mirror)
   }
 };
 ```
