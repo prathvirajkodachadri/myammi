@@ -453,52 +453,6 @@ h2 { font-size: 22px; }
 .w2 { animation-delay: 0.4s; }
 @keyframes waveFade { 0%, 100% { opacity: 0.2; } 40% { opacity: 1; } }
 
-/* Audio Tap Hint Banner (appears if browser blocks autoplay pending user gesture) */
-.audio-tap-hint {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  background: linear-gradient(135deg, rgba(217, 93, 127, 0.32), rgba(247, 227, 176, 0.22));
-  border: 1px solid rgba(248, 201, 212, 0.5);
-  color: #fff;
-  font-size: 12.5px;
-  font-weight: 600;
-  padding: 8px 14px;
-  border-radius: 999px;
-  margin: 6px auto 10px;
-  cursor: pointer;
-  box-shadow: 0 4px 18px rgba(217, 93, 127, 0.35);
-  animation: pulseHint 2s infinite ease-in-out;
-  transition: opacity 0.35s ease, transform 0.35s ease, max-height 0.35s ease, margin 0.35s ease, padding 0.35s ease;
-  max-height: 52px;
-  overflow: hidden;
-  user-select: none;
-  -webkit-tap-highlight-color: transparent;
-  width: 100%;
-}
-.audio-tap-hint.hidden {
-  opacity: 0;
-  max-height: 0;
-  margin: 0;
-  padding: 0;
-  border-width: 0;
-  pointer-events: none;
-  transform: scale(0.95);
-}
-.hint-pulse {
-  display: inline-block;
-  animation: bounceHint 1.2s infinite ease-in-out;
-}
-@keyframes bounceHint {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-3px) scale(1.15); }
-}
-@keyframes pulseHint {
-  0%, 100% { transform: scale(1); box-shadow: 0 4px 18px rgba(217, 93, 127, 0.35); }
-  50% { transform: scale(1.02); box-shadow: 0 6px 22px rgba(248, 201, 212, 0.55); }
-}
-
 /* Screen Recording Reminder Box (Centered) */
 .record-box {
   background: linear-gradient(135deg, rgba(255, 238, 225, 0.08), rgba(217, 93, 127, 0.12));
@@ -967,12 +921,6 @@ footer b { color: var(--gold); }
         <p>Adventure ಶುರು ಮಾಡುವ ಮೊದಲು phone‌ನ <b>Screen Recording ಆನ್</b> ಮಾಡಿಕೊಳ್ಳಿ. ಹಾಗೆ ನಿಮ್ಮ reactions video ಮಾಡಿ ಈ ಸುಂದರ ಕ್ಷಣವನ್ನು ನೆನಪಾಗಿ ಉಳಿಸೋಣ. ❤️</p>
       </div>
 
-      <!-- Music Tap Hint (appears if browser policy requires initial touch to output audio) -->
-      <div id="audioTapHint" class="audio-tap-hint hidden" role="button" tabindex="0" aria-label="Play romantic music">
-        <span class="hint-pulse">🎵</span>
-        <span> Tap to play music ❤️</span>
-      </div>
-
       <button class="btn" id="startBtn" type="button">
         <span>ಪ್ರಯಾಣ ಶುರು ಮಾಡೋಣ ❤️</span>
         <span class="click-sub">CLICK HERE</span>
@@ -1430,7 +1378,6 @@ const norm = val => String(val || "").trim().toUpperCase();
 const bgSong = $("#bgSong");
 const musicBtn = $("#musicBtn");
 const musicLabel = $("#musicLabel");
-const audioTapHint = $("#audioTapHint");
 
 let audioCtx = null;
 let userWantsMusic = true; // Music is ON by default
@@ -1496,18 +1443,6 @@ function updateMusicUI() {
   musicLabel.textContent = userWantsMusic ? "Music: On" : "Music: Off";
 }
 
-function showHint() {
-  if (audioTapHint && userWantsMusic && !isAudioActive()) {
-    audioTapHint.classList.remove("hidden");
-  }
-}
-
-function hideHint() {
-  if (audioTapHint) {
-    audioTapHint.classList.add("hidden");
-  }
-}
-
 // Master function to trigger music playback
 function startMusic() {
   if (!userWantsMusic) return;
@@ -1518,14 +1453,10 @@ function startMusic() {
     const playPromise = bgSong.play();
     if (playPromise !== undefined) {
       playPromise.then(() => {
-        hideHint();
         stopSynthMusic();
         updateMusicUI();
       }).catch((err) => {
         console.log("Autoplay waiting for touch gesture:", err);
-        if (userWantsMusic) {
-          showHint();
-        }
       });
     }
   } else {
@@ -1539,7 +1470,6 @@ function stopMusic() {
     try { bgSong.pause(); } catch(e) {}
   }
   stopSynthMusic();
-  hideHint();
   updateMusicUI();
 }
 
@@ -1570,15 +1500,6 @@ musicBtn.addEventListener("click", (e) => {
   }
 });
 
-// Hint banner click
-if (audioTapHint) {
-  audioTapHint.addEventListener("click", (e) => {
-    e.stopPropagation();
-    userWantsMusic = true;
-    startMusic();
-  });
-}
-
 // Global user interaction capture: start song on the very first touch anywhere
 const unlockEvents = ["pointerdown", "touchstart", "click", "keydown"];
 function onFirstGesture() {
@@ -1595,7 +1516,6 @@ unlockEvents.forEach((evt) => {
 // Audio element events
 if (bgSong) {
   bgSong.addEventListener("play", () => {
-    hideHint();
     stopSynthMusic();
     updateMusicUI();
   });
@@ -1759,7 +1679,6 @@ $("#startBtn").addEventListener("click", () => {
   userWantsMusic = true;
   getAudio();
   startMusic();
-  playCorrect();
   switchScreen("screen-s1", 1);
 });
 
