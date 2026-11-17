@@ -2,7 +2,7 @@
 
 A romantic interactive anniversary scavenger hunt web application created with love by **Prathviraj** for **Ammi**.
 
-Designed and optimized to run smoothly on Android mobile phones (including the **OnePlus Nord CE 3**), this experience guides Ammi through 5 real-life gifts with interactive clues, audio chimes, animated SVG artwork, and a suspenseful final reveal.
+Designed and optimized to run smoothly on Android mobile phones (including the **OnePlus Nord CE 3**), this experience guides Ammi through 5 real-life gifts with interactive clues, custom romantic song playback, animated SVG artwork, and a suspenseful final reveal.
 
 ---
 
@@ -12,7 +12,7 @@ Designed and optimized to run smoothly on Android mobile phones (including the *
    - Screen-fit responsive layout (`max-width: 440px`) designed for 20:9 tall aspect ratio viewports (~392×872px).
    - High-contrast velvet wine (`#1a080d`) and champagne gold typography.
    - Touch-optimized buttons, full Kannada Unicode font fallback, and clean mobile keyboard interaction.
-   - Music **ON by default** with gentle romantic lullaby.
+   - Plays custom uploaded **`song.mp3`** on loop with intelligent synthesizer fallback.
 
 2. **The 5 Gifts Treasure Hunt**:
    - **Welcome Screen**: Anniversary celebration date (*November 18*), screen recording reminder, beating heart artwork, and journey start button.
@@ -21,14 +21,14 @@ Designed and optimized to run smoothly on Android mobile phones (including the *
    - **Stage 3 (Gift 02 • Chudidar)**: Diwan Cot clue (`Diwan Cot ಬಳಿ ನೋಡಿ`) & password `LOVE03`.
    - **Stage 4 (Gift 03 • Slipper)**: Shoe Rack clue (`Shoe Rack ಬಳಿ ನೋಡಿ`) & password `LOVE04`.
    - **Stage 5 (Gift 04 • Earrings)**: Studio Room / Mirror clue (`Studio Room — ಕನ್ನಡಿಯ ಹಿಂದೆ ನೋಡಿ`) & password `LOVE05`.
-   - **Final Screen (Gift 05 • The Grand Mystery)**: Directs Ammi to the **Bedroom Mirror Backside** (`Bedroom ಕನ್ನಡಿಯ ಹಿಂದೆ ನೋಡಿ`) where a special mystery box awaits. When she physically opens the box, she discovers the grand anniversary surprise!
+   - **Final Screen (Gift 05 • The Grand Mystery)**: Directs Ammi to the **Top of the TV stand** (`TV Stand ಮೇಲೆ ನೋಡಿ`) where a special mystery box awaits. When she physically opens the box, she discovers the grand anniversary surprise!
 
 3. **Stage-by-Stage Animated Gift Box Unboxing**:
    - Every unlocked stage pops open a 3D animated gift box with flying confetti hearts, congratulatory message, and sound chime.
    - Advances only when Ammi explicitly clicks **"ಮುಂದುವರಿಯಿರಿ ❤️"**.
 
 4. **100% Offline & Zero External Dependencies**:
-   - Pure inline HTML, CSS, bespoke inline SVG illustrations, and Web Audio API synthesizer for romantic background music box and chimes. No external mp3 files or CDN font files that could fail on slow mobile networks.
+   - Pure inline HTML, CSS, bespoke inline SVG illustrations, and Web Audio API synthesizer chimes layered over your romantic `song.mp3`.
 
 ---
 
